@@ -1,0 +1,11 @@
+@(form: Form[(String, Option[String])])
+
+@helper.form(action = routes.Plans.create) {
+
+  I'm planning to hack on @helper.inputText(form("summary")). Care to join me?
+
+  Details (optional):
+  @helper.textarea(form("details"))
+
+  <button type="submit">Go!</button>
+}

@@ -1,7 +1,8 @@
 package controllers
 
-import play.api._
 import play.api.mvc._
+import play.api.data._
+import play.api.data.Forms._
 import models._
 
 object Plans extends Controller {
@@ -9,20 +10,23 @@ object Plans extends Controller {
   def list = Action {
     val plans = Plan.findAllUnmatched()
     if (plans.isEmpty)
-      Ok(views.html.noplans())
+      Ok(views.html.plans.noplans())
     else
-      Ok(views.html.index(plans))
+      Ok(views.html.plans.list(plans))
   }
 
-  def form = Action {
-    Ok("TODO form")
+  val form = Form(
+    tuple(
+      "summary" -> text,
+      "details" -> optional(text)
+    )
+  )
+
+  def showForm = Action {
+    Ok(views.html.plans.form(form))
   }
 
   def create = Action {
-    val form = Form(mapping(
-      "summary" -> text,
-      "details" -> optional(text)
-    ))
     Ok("TODO")
   }
   
