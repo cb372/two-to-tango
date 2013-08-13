@@ -1,0 +1,14 @@
+@(plans: List[Plan])
+
+@main("Index") {
+
+  <div>
+    <dl>
+    @for(plan <- plans) {
+      <dd>
+        "I'm planning to hack on <em>@plan.summary</em>. Care to join me?" -- @plan.creator.name
+      </dd>
+    }
+    </dl>
+  </div>
+}
