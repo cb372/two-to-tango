@@ -8,10 +8,11 @@ object ApplicationBuild extends Build {
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
-    "com.github.seratch" %% "scalikejdbc"             % "[1.6,)",
-    "com.github.seratch" %% "scalikejdbc-interpolation" % "[1.6,)",
-    "com.github.seratch" %% "scalikejdbc-play-plugin" % "[1.6,)",
-    "com.h2database"     %  "h2"                      % "1.3.173"
+    "com.github.seratch"   %% "scalikejdbc"               % "[1.6,)",
+    "com.github.seratch"   %% "scalikejdbc-interpolation" % "[1.6,)",
+    "com.github.seratch"   %% "scalikejdbc-play-plugin"   % "[1.6,)",
+    "com.h2database"       %  "h2"                        % "1.3.173",
+    "com.github.tototoshi" %% "play-flyway"               % "0.1.4"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
