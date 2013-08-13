@@ -7,8 +7,7 @@ import models._
 object Application extends Controller {
   
   def index = Action {
-    val plans = Plan.findAllUnmatched()
-    Ok(views.html.index(plans))
+    Redirect(routes.Plans.list)
   }
-  
+
 }

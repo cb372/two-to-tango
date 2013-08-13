@@ -7,3 +7,8 @@ GET     /                           controllers.Application.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Plans
+GET     /plans                      controllers.Plans.list
+GET     /plans/new                  controllers.Plans.form
+POST    /plans                      controllers.Plans.create
