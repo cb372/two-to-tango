@@ -1,0 +1,10 @@
+@(form: Form[String])(implicit flash: Flash)
+
+@main("Login") {
+  @helper.form(action = routes.Users.login) {
+
+    @helper.inputText(form("name"))
+
+    <button type="submit">Go!</button>
+  }
+}

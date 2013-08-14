@@ -12,3 +12,9 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /plans                      controllers.Plans.list
 GET     /plans/new                  controllers.Plans.showForm
 POST    /plans                      controllers.Plans.create
+
+# Users
+GET     /login                      controllers.Users.showLoginForm
+POST    /login                      controllers.Users.login
+GET     /signup                     controllers.Users.showSignupForm
+POST    /signup                     controllers.Users.signup

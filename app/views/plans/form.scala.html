@@ -1,11 +1,13 @@
-@(form: Form[(String, Option[String])])
+@(form: Form[(String, Option[String])])(implicit flash: Flash)
 
-@helper.form(action = routes.Plans.create) {
+@main("Create a plan") {
+  @helper.form(action = routes.Plans.create) {
 
-  I'm planning to hack on @helper.inputText(form("summary")). Care to join me?
+    I'm planning to hack on @helper.inputText(form("summary")). Care to join me?
 
-  Details (optional):
-  @helper.textarea(form("details"))
+    Details (optional):
+    @helper.textarea(form("details"))
 
-  <button type="submit">Go!</button>
+    <button type="submit">Go!</button>
+  }
 }
