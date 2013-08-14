@@ -3,7 +3,9 @@
 @main("Login") {
   @helper.form(action = routes.Users.login) {
 
-    @helper.inputText(form("name"))
+    @helper.inputText(form("email"))
+
+    // TODO autocomplete
 
     <button type="submit">Go!</button>
   }

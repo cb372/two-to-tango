@@ -14,7 +14,7 @@ object Users extends Controller {
 
   val loginForm = Form(
     single(
-      "name" -> text
+      "email" -> text
     )
   )
 
@@ -37,8 +37,8 @@ object Users extends Controller {
     loginForm.bindFromRequest.fold({ formWithErrors =>
       // Form not filled in correctly
       Ok(views.html.users.login(formWithErrors))
-    }, { case name =>
-      val user = User.findByName(name)
+    }, { case email =>
+      val user = User.findByEmail(email)
       user.fold[PlainResult] {
         // unknown user
         Ok(views.html.users.login(loginForm.bindFromRequest))
@@ -49,6 +49,11 @@ object Users extends Controller {
         )
       }
     })
+  }
+
+  def emailAutoComplete = Action { implicit request =>
+    // TODO send json
+    Ok()
   }
 
   def signup = Action { implicit request =>
