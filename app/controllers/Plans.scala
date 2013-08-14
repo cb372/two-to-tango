@@ -26,16 +26,8 @@ object Plans extends Controller {
     Ok(views.html.plans.form(form))
   }
 
-  def loggedIn[A](block: User => PlainResult)(implicit request: Request[A]): PlainResult = {
-    session.get("userId").flatMap { case uId => User.find(uId.toLong) }.fold {
-      Redirect(routes.Users.login).flashing("error" -> "Oops, you're not logged in!")
-    } { user =>
-      block(user)
-    }
-  }
-
   def create = Action { implicit request =>
-    loggedIn { user =>
+    Users.loggedIn { user =>
       form.bindFromRequest.fold ({ formWithErrors =>
         Ok(views.html.plans.form(form))
       }, { case (summary, details) =>

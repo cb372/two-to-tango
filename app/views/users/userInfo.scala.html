@@ -1,0 +1,9 @@
+@(user: Option[User])
+
+<div>
+@user.fold {
+  <a href="@routes.Users.login">Login</a> | <a href="@routes.Users.signup">Signup</a>
+} { u =>
+  Logged in as <em>@u.name</em>
+}
+</div>

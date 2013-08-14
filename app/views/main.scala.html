@@ -3,16 +3,23 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Two To Tango | @title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-    </head>
-    <body>
-        @flash.get("info").map { i => <div class="flash-info">@i</div> }
-        @flash.get("error").map { e => <div class="flash-error">@e</div> }
+  <head>
+    <title>Two To Tango | @title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="userInfo"></div>
+    <script type="text/javascript">
+      $($("#userInfo").load('@routes.Users.userInfo'))
+    </script>
 
-        @content
-    </body>
+
+    @flash.get("info").map { i => <div class="flash-info">@i</div> }
+
+    @flash.get("error").map { e => <div class="flash-error">@e</div> }
+
+    @content
+  </body>
 </html>

@@ -39,9 +39,9 @@ object Users extends Controller {
       Ok(views.html.users.login(formWithErrors))
     }, { case name =>
       val user = User.findByName(name)
-      user.fold {
+      user.fold[PlainResult] {
         // unknown user
-        Ok(views.html.users.login(loginForm.bindFromRequest)).flashing("error" -> "Unknown user")
+        Ok(views.html.users.login(loginForm.bindFromRequest))
       } { u =>
         // Valid user. Save user ID in session and redirect
         Redirect(routes.Plans.list()).withSession(
@@ -70,4 +70,28 @@ object Users extends Controller {
       }
     })
   }
+
+  def userInfo = Action { implicit request =>
+    maybeLoggedIn { user =>
+      Ok(views.html.users.userInfo(user))
+    }
+  }
+
+  /*
+   * Helper methods
+   */
+
+  def loggedIn[A](block: User => PlainResult)(implicit request: Request[A]): PlainResult = {
+    session.get("userId").flatMap { case uId => User.find(uId.toLong) }.fold {
+      Redirect(routes.Users.login).flashing("error" -> "Oops, you're not logged in!")
+    } { user =>
+      block(user)
+    }
+  }
+
+  def maybeLoggedIn[A](block: Option[User] => PlainResult)(implicit request: Request[A]): PlainResult = {
+    val user: Option[User] = session.get("userId").flatMap { case uId => User.find(uId.toLong) }
+    block(user)
+  }
+
 }

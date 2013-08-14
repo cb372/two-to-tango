@@ -18,3 +18,4 @@ GET     /login                      controllers.Users.showLoginForm
 POST    /login                      controllers.Users.login
 GET     /signup                     controllers.Users.showSignupForm
 POST    /signup                     controllers.Users.signup
+GET     /user                       controllers.Users.userInfo
