@@ -5,8 +5,10 @@
 
     @helper.inputText(form("email"))
 
-    // TODO autocomplete
-
     <button type="submit">Go!</button>
   }
 }
+
+<script type="text/javascript">
+  $($('#email' ).autocomplete({ source: "/users/email-auto-complete" }));
+</script>

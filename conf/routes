@@ -14,8 +14,9 @@ GET     /plans/new                  controllers.Plans.showForm
 POST    /plans                      controllers.Plans.create
 
 # Users
-GET     /login                      controllers.Users.showLoginForm
-POST    /login                      controllers.Users.login
-GET     /signup                     controllers.Users.showSignupForm
-POST    /signup                     controllers.Users.signup
-GET     /user                       controllers.Users.userInfo
+GET     /users/login                controllers.Users.showLoginForm
+POST    /users/login                controllers.Users.login
+GET     /users/signup               controllers.Users.showSignupForm
+POST    /users/signup               controllers.Users.signup
+GET     /users/me                   controllers.Users.userInfo
+GET     /users/email-auto-complete  controllers.Users.emailAutoComplete(term: String ?= "")

@@ -4,6 +4,7 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import models.User
+import play.api.libs.json.Json
 
 /**
  *
@@ -51,9 +52,9 @@ object Users extends Controller {
     })
   }
 
-  def emailAutoComplete = Action { implicit request =>
-    // TODO send json
-    Ok()
+  def emailAutoComplete(term: String) = Action { implicit request =>
+    val emails = User.findByEmailStartsWith(term).map(_.email)
+    Ok(Json.toJson(emails))
   }
 
   def signup = Action { implicit request =>

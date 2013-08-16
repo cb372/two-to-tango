@@ -32,9 +32,9 @@ object User extends SQLSyntaxSupport[User] {
     select.from(User as u).where.eq(u.email, email)
   }.map(User(u.resultName)).single().apply()
 
-  def findByEmailStartsWith(email: String)(implicit session: DBSession = AutoSession): Option[User] = withSQL {
+  def findByEmailStartsWith(email: String)(implicit session: DBSession = AutoSession): List[User] = withSQL {
     select.from(User as u).where.like(u.email, email + '%')
-  }.map(User(u.resultName)).single().apply()
+  }.map(User(u.resultName)).list().apply()
 
   def create(name: String, email: String)(implicit session: DBSession = AutoSession): User = {
     val id = withSQL {
