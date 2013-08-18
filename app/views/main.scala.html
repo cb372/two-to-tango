@@ -32,7 +32,7 @@
       <div class="row">
         <div class="col-md-8">
           @flash.get("info").map { i => <div class="alert alert-success"><strong>Awesome!</strong> @i</div> }
-          @flash.get("error").map { e => <div class="flash-error"><strong>Oh no!</strong> @e</div> }
+          @flash.get("error").map { e => <div class="alert alert-danger"><strong>Oh no!</strong> @e</div> }
 
           <h1>@title</h1>
           <hr/>
