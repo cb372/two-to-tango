@@ -1,16 +1,16 @@
-@(form: Form[(String, Option[String])])(implicit flash: Flash)
+@(form: Form[(String, Option[String])])(implicit lang: Lang, flash: Flash)
 
-@main("Create a plan") {
+@main(Messages("plans.createAPlan")) {
   @helper.form(action = routes.Plans.create) {
 
     <p>
-    I'm planning to hack on
-    <input type="text" name="@form("summary").name" id="@form("summary").id" value="@form("summary").value" size="30" maxlength="255" />
-    . Care to join me?
+      @Messages("plans.ImPlanningTo.1")
+      <input type="text" name="@form("summary").name" id="@form("summary").id" value="@form("summary").value" size="30" maxlength="255" />
+      @Messages("plans.ImPlanningTo.2")
     </p>
 
     <p>
-    More details (optional):
+      @Messages("plans.moreDetails")
     </p>
 
     <p>

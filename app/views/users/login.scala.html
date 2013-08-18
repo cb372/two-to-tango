@@ -1,9 +1,9 @@
 @(form: Form[String])(implicit flash: Flash)
 
-@main("Login") {
+@main(Messages("users.login")) {
   @helper.form(action = routes.Users.login) {
 
-    @helper.inputText(form("email"))
+    @helper.inputText(form("email"), 'size -> 30)
 
     <button type="submit">Go!</button>
   }

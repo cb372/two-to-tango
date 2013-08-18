@@ -1,10 +1,10 @@
 @(form: Form[(String, String)])(implicit flash: Flash)
 
-@main("Signup") {
+@main(Messages("users.signup")) {
   @helper.form(action = routes.Users.signup) {
 
-    @helper.inputText(form("name"))
-    @helper.inputText(form("email"))
+    @helper.inputText(form("name"), 'size -> 30)
+    @helper.inputText(form("email"), 'size -> 30)
 
     <button type="submit">Go!</button>
   }

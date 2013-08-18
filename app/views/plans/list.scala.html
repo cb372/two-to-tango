@@ -1,8 +1,8 @@
 @(unmatchedPlans: List[Plan], matchedPlans: List[Plan], user: Option[User])(implicit lang: Lang, flash: Flash)
 
-@main("Plans") {
+@main(Messages("plans.title")) {
 
-  <h2>Looking for a buddy!</h2>
+  <h2>@Messages("plans.lookingForABuddy")</h2>
 
   <div>
     @if(unmatchedPlans.isEmpty) {
@@ -18,7 +18,7 @@
         <dd>
           <blockquote>
             <p>
-              I'm planning to hack on <strong>@plan.summary</strong>. Care to join me?
+              @Messages("plans.ImPlanningTo.1") <strong>@plan.summary</strong>@Messages("plans.ImPlanningTo.2")
             </p>
             @plan.details.map { d =>
               <p class="text-info details" data-plan-id="@plan.id">@d</p>
@@ -26,7 +26,7 @@
             <p><small>@plan.creator.name</small></p>
             @if(!(user.isDefined && user.get.id == plan.creator.id)) {
               <div>
-                <a class="btn btn-primary" href="@routes.Plans.offer(plan.id)">Count me in!</a>
+                <a class="btn btn-primary" href="@routes.Plans.offer(plan.id)">@Messages("plans.countMeIn")</a>
               </div>
             }
           </blockquote>
@@ -45,18 +45,18 @@
 
   <hr/>
 
-  <h2>Recently matched</h2>
+  <h2>@Messages("plans.recentlyMatched")</h2>
 
   <div>
     @if(matchedPlans.isEmpty) {
       <div>
-        None yet :(
+        @Messages("plans.noneYet") :(
       </div>
     } else {
       <dl>
       @for(plan <- matchedPlans) {
         <dd>
-          <p><strong>@plan.creator.name</strong> and <strong>@plan.offerer.map(_.name)</strong> are planning to hack on <strong>@plan.summary</strong>. Good luck to them!</p>
+          <p><strong>@plan.creator.name</strong>@Messages("plans.matchedPlan.1")<strong>@plan.offerer.map(_.name)</strong>@Messages("plans.matchedPlan.2")<strong>@plan.summary</strong>@Messages("plans.matchedPlan.3")</p>
         </dd>
       }
       </dl>

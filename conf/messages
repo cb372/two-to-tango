@@ -1,3 +1,18 @@
 plans.noUnmatched=Looks like there are no plans in the pipeline.
-plans.whyNotMakeOne=Why don\'t you add one?
+plans.whyNotMakeOne=Why not add one?
 plans.addANewPlan=Add a new plan!
+plans.createAPlan=Create a plan
+plans.ImPlanningTo.1=I''m planning to hack on
+plans.ImPlanningTo.2=. Care to join me?
+plans.moreDetails=More details (optional):
+plans.lookingForABuddy=Looking for a buddy!
+plans.countMeIn=Count me in!
+plans.recentlyMatched=Recently matched
+plans.noneYet=None yet
+plans.matchedPlan.1=' 'and' '
+plans.matchedPlan.2=' 'are planning to hack on' '
+plans.matchedPlan.3=. Good luck to them!
+plans.title=Plans
+
+users.login=Login
+users.signup=Signup
