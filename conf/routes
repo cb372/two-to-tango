@@ -17,6 +17,7 @@ GET         /plans/:id/offer                  controllers.Plans.offer(id: Long)
 # Users
 GET         /users/login                      controllers.Users.showLoginForm
 POST        /users/login                      controllers.Users.login
+GET         /users/logout                     controllers.Users.logout
 GET         /users/signup                     controllers.Users.showSignupForm
 POST        /users/signup                     controllers.Users.signup
 GET         /users/me                         controllers.Users.userInfo

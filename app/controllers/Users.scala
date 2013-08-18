@@ -52,6 +52,10 @@ object Users extends Controller {
     })
   }
 
+  def logout = Action { implicit request =>
+    Redirect(routes.Application.index()).withSession(session - "userId")
+  }
+
   def emailAutoComplete(term: String) = Action { implicit request =>
     val emails = User.findByEmailStartsWith(term).map(_.email)
     Ok(Json.toJson(emails))

@@ -6,22 +6,48 @@
   <head>
     <title>Two To Tango | @title</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ui-lightness/jquery-ui-1.10.3.custom.min.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
     <script src="@routes.Assets.at("javascripts/jquery-ui-1.10.3.custom.min.js")" type="text/javascript"></script>
   </head>
   <body>
-    <div id="userInfo"></div>
-    <script type="text/javascript">
-      $($("#userInfo").load('@routes.Users.userInfo'))
-    </script>
 
+    <nav class="navbar" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="@routes.Application.index()">Two To Tango</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="@routes.Plans.list()">Plans</a></li>
+            <li><a href="@routes.Plans.showForm()">Create a New Plan</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          @flash.get("info").map { i => <div class="alert alert-success"><strong>Awesome!</strong> @i</div> }
+          @flash.get("error").map { e => <div class="flash-error"><strong>Oh no!</strong> @e</div> }
 
-    @flash.get("info").map { i => <div class="flash-info">@i</div> }
+          <h1>@title</h1>
+          <hr/>
+          @content
+        </div>
 
-    @flash.get("error").map { e => <div class="flash-error">@e</div> }
-
-    @content
+        <div class="col-md-4">
+          <div id="userInfo" class="well"></div>
+          <script type="text/javascript">
+            $(function() {
+              $("#userInfo").load('@routes.Users.userInfo');
+            });
+          </script>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

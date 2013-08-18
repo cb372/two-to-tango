@@ -3,11 +3,22 @@
 @main("Create a plan") {
   @helper.form(action = routes.Plans.create) {
 
-    I'm planning to hack on @helper.inputText(form("summary")). Care to join me?
+    <p>
+    I'm planning to hack on
+    <input type="text" name="@form("summary").name" id="@form("summary").id" value="@form("summary").value" size="30" maxlength="255" />
+    . Care to join me?
+    </p>
 
-    Details (optional):
-    @helper.textarea(form("details"))
+    <p>
+    More details (optional):
+    </p>
 
-    <button type="submit">Go!</button>
+    <p>
+      <textarea name="@form("details").name" id="@form("details").id" cols="80" rows="3" maxlength="255">@form("details").value</textarea>
+    </p>
+
+    <p>
+      <button type="submit" class="btn btn-primary">Go!</button>
+    </p>
   }
 }

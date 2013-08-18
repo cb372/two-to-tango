@@ -2,8 +2,8 @@
 
 <div>
 @user.fold {
-  <a href="@routes.Users.login">Login</a> | <a href="@routes.Users.signup">Signup</a>
+  Not logged in | <a href="@routes.Users.login">Login</a> | <a href="@routes.Users.signup">Signup</a>
 } { u =>
-  Logged in as <em>@u.name</em>
+  Logged in as <strong>@u.name</strong> | <a href="@routes.Users.logout">Logout</a>
 }
 </div>

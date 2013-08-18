@@ -1,6 +1,8 @@
 @(unmatchedPlans: List[Plan], matchedPlans: List[Plan], user: Option[User])(implicit lang: Lang, flash: Flash)
 
-@main("Index") {
+@main("Plans") {
+
+  <h2>Looking for a buddy!</h2>
 
   <div>
     @if(unmatchedPlans.isEmpty) {
@@ -14,12 +16,20 @@
       <dl>
       @for(plan <- unmatchedPlans) {
         <dd>
-          "I'm planning to hack on <em>@plan.summary</em>. Care to join me?" -- @plan.creator.name
-          @if(!(user.isDefined && user.get.id == plan.creator.id)) {
-            <div>
-              <a href="@routes.Plans.offer(plan.id)">Count me in!</a>
-            </div>
-          }
+          <blockquote>
+            <p>
+              I'm planning to hack on <strong>@plan.summary</strong>. Care to join me?
+            </p>
+            @plan.details.map { d =>
+              <p class="text-info details" data-plan-id="@plan.id">@d</p>
+            }
+            <p><small>@plan.creator.name</small></p>
+            @if(!(user.isDefined && user.get.id == plan.creator.id)) {
+              <div>
+                <a class="btn btn-primary" href="@routes.Plans.offer(plan.id)">Count me in!</a>
+              </div>
+            }
+          </blockquote>
         </dd>
       }
       </dl>
@@ -33,6 +43,10 @@
     }
   </div>
 
+  <hr/>
+
+  <h2>Recently matched</h2>
+
   <div>
     @if(matchedPlans.isEmpty) {
       <div>
@@ -42,7 +56,7 @@
       <dl>
       @for(plan <- matchedPlans) {
         <dd>
-          <em>@plan.creator.name</em> and <em>@plan.offerer.map(_.name)</em> are planning to hack on <em>@plan.summary</em>. Good luck to them!
+          <p><strong>@plan.creator.name</strong> and <strong>@plan.offerer.map(_.name)</strong> are planning to hack on <strong>@plan.summary</strong>. Good luck to them!</p>
         </dd>
       }
       </dl>
