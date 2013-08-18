@@ -1,4 +1,14 @@
-This is your new Play 2.1 application
+Two To Tango
 =====================================
 
-This file will be packaged with your application, when using `play dist`.
+A service to help people find pair-programming buddies at work.
+
+Tell everybody what you're planning to hack on, or offer to help somebody out with their project.
+
+TODO
+----
+
+[ ] Japanese localisation
+[ ] Email notifications
+[ ] 'Like' button
+[ ] Optionally set a date for plans?
