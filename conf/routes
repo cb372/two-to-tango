@@ -3,20 +3,21 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET         /                                 controllers.Application.index
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file                     controllers.Assets.at(path="/public", file)
 
 # Plans
-GET     /plans                      controllers.Plans.list
-GET     /plans/new                  controllers.Plans.showForm
-POST    /plans                      controllers.Plans.create
+GET         /plans                            controllers.Plans.list
+GET         /plans/new                        controllers.Plans.showForm
+POST        /plans                            controllers.Plans.create
+GET         /plans/:id/offer                  controllers.Plans.offer(id: Long)
 
 # Users
-GET     /users/login                controllers.Users.showLoginForm
-POST    /users/login                controllers.Users.login
-GET     /users/signup               controllers.Users.showSignupForm
-POST    /users/signup               controllers.Users.signup
-GET     /users/me                   controllers.Users.userInfo
-GET     /users/email-auto-complete  controllers.Users.emailAutoComplete(term: String ?= "")
+GET         /users/login                      controllers.Users.showLoginForm
+POST        /users/login                      controllers.Users.login
+GET         /users/signup                     controllers.Users.showSignupForm
+POST        /users/signup                     controllers.Users.signup
+GET         /users/me                         controllers.Users.userInfo
+GET         /users/email-auto-complete        controllers.Users.emailAutoComplete(term: String ?= "")

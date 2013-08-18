@@ -1,14 +1,53 @@
-@(plans: List[Plan])(implicit flash: Flash)
+@(unmatchedPlans: List[Plan], matchedPlans: List[Plan], user: Option[User])(implicit lang: Lang, flash: Flash)
 
 @main("Index") {
 
   <div>
-    <dl>
-    @for(plan <- plans) {
-      <dd>
-        "I'm planning to hack on <em>@plan.summary</em>. Care to join me?" -- @plan.creator.name
-      </dd>
+    @if(unmatchedPlans.isEmpty) {
+      <div>
+      @Messages("plans.noUnmatched")
+      </div>
+      <div>
+        <a href="@routes.Plans.showForm()">@Messages("plans.whyNotMakeOne")</a>
+      </div>
+    } else {
+      <dl>
+      @for(plan <- unmatchedPlans) {
+        <dd>
+          "I'm planning to hack on <em>@plan.summary</em>. Care to join me?" -- @plan.creator.name
+          @if(!(user.isDefined && user.get.id == plan.creator.id)) {
+            <div>
+              <a href="@routes.Plans.offer(plan.id)">Count me in!</a>
+            </div>
+          }
+        </dd>
+      }
+      </dl>
+      <div>
+        @if(user.isDefined) {
+          <a href="@routes.Plans.showForm()">@Messages("plans.addANewPlan")</a>
+        } else {
+          Want to add a plan? First <a href="@routes.Users.showLoginForm()">login</a> or <a href="@routes.Users.showSignupForm()">Signup</a>.
+        }
+      </div>
     }
-    </dl>
+  </div>
+
+  <div>
+    @if(matchedPlans.isEmpty) {
+      <div>
+        None yet :(
+      </div>
+    } else {
+      <dl>
+      @for(plan <- matchedPlans) {
+        <dd>
+          <em>@plan.creator.name</em> and <em>@plan.offerer.map(_.name)</em> are planning to hack on <em>@plan.summary</em>. Good luck to them!
+        </dd>
+      }
+      </dl>
+
+    }
+
   </div>
 }

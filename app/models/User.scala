@@ -13,10 +13,13 @@ object User extends SQLSyntaxSupport[User] {
   override val columnNames = Seq("id", "name", "email")
 
   def apply(u: ResultName[User])(rs: WrappedResultSet): User = User(
-    id = rs.long("id"),
-    name = rs.string("name"),
-    email = rs.string("email")
+    id = rs.long(u.c("id")),
+    name = rs.string(u.c("name")),
+    email = rs.string(u.c("email"))
   )
+
+  def opt(u: ResultName[User])(rs: WrappedResultSet): Option[User] =
+    rs.longOpt(u.c("id")) map { _ => apply(u)(rs) }
 
   private val u = User.syntax("u")
 

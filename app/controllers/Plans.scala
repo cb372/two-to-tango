@@ -8,11 +8,11 @@ import models._
 object Plans extends Controller {
   
   def list = Action { implicit request =>
-    val plans = Plan.findAllUnmatched()
-    if (plans.isEmpty)
-      Ok(views.html.plans.noplans())
-    else
-      Ok(views.html.plans.list(plans))
+    Users.maybeLoggedIn { user =>
+      val unmatched = Plan.findUnmatched(limit = None)
+      val matched = Plan.findMatched(limit = Some(10))
+      Ok(views.html.plans.list(unmatched, matched, user))
+    }
   }
 
   val form = Form(
@@ -38,6 +38,16 @@ object Plans extends Controller {
     }
   }
 
+  def offer(planId: Long) = Action { implicit request =>
+    Users.loggedIn { user =>
+      Plan.find(planId).fold[PlainResult] {
+        NotFound("Sorry, no plan found with that ID")
+      } { plan =>
+        Plan.setOfferer(plan, user)
+        Redirect(routes.Plans.list()).flashing("info" -> s"Thanks! ${plan.creator.name} will be pleased!")
+      }
+    }
+  }
 
 }
 
