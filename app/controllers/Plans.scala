@@ -17,13 +17,15 @@ object Plans extends Controller {
 
   val form = Form(
     tuple(
-      "summary" -> text,
-      "details" -> optional(text)
+      "summary" -> text(maxLength = 255),
+      "details" -> optional(text(maxLength = 255))
     )
   )
 
   def showForm = Action { implicit request =>
-    Ok(views.html.plans.form(form))
+    Users.loggedIn { _ =>
+      Ok(views.html.plans.form(form))
+    }
   }
 
   def create = Action { implicit request =>

@@ -15,14 +15,14 @@ object Users extends Controller {
 
   val loginForm = Form(
     single(
-      "email" -> text
+      "email" -> text(maxLength = 255)
     )
   )
 
   val signupForm = Form(
     tuple(
-      "name" -> text,
-      "email" -> email
+      "name" -> text(maxLength = 255),
+      "email" -> text(maxLength = 255)
     )
   )
 
@@ -38,8 +38,8 @@ object Users extends Controller {
     loginForm.bindFromRequest.fold({ formWithErrors =>
       // Form not filled in correctly
       Ok(views.html.users.login(formWithErrors))
-    }, { case email =>
-      val user = User.findByEmail(email)
+    }, { case mail =>
+      val user = User.findByEmail(mail)
       user.fold[PlainResult] {
         // unknown user
         Ok(views.html.users.login(loginForm.bindFromRequest))
