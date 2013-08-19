@@ -16,6 +16,6 @@ TODO
 ----
 
 - [x] Japanese localisation
-- [ ] Email notifications
+- [x] Email notifications
 - [ ] 'Like' button
 - [ ] Optionally set a date for plans?
