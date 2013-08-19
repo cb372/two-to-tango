@@ -13,6 +13,7 @@ object ApplicationBuild extends Build {
     "com.github.seratch"   %% "scalikejdbc-interpolation" % "[1.6,)",
     "com.github.seratch"   %% "scalikejdbc-play-plugin"   % "[1.6,)",
     "com.github.seratch"   %% "scalikejdbc-test"          % "[1.6,)"       % "test",
+    "com.typesafe"         %% "play-plugins-mailer"       % "2.1.0",
     "com.h2database"       %  "h2"                        % "1.3.173",
     "com.github.tototoshi" %% "play-flyway"               % "0.1.4",
     "org.specs2"           %% "specs2"                    % "2.1.1"        % "test"

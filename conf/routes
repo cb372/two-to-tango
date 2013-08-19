@@ -22,3 +22,4 @@ GET         /users/signup                     controllers.Users.showSignupForm
 POST        /users/signup                     controllers.Users.signup
 GET         /users/me                         controllers.Users.userInfo
 GET         /users/email-auto-complete        controllers.Users.emailAutoComplete(term: String ?= "")
+GET         /users/email/test                 controllers.Users.sendTestEmail

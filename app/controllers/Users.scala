@@ -6,6 +6,7 @@ import play.api.data.Forms._
 import models.User
 import play.api.libs.json.Json
 import play.api.i18n.Messages
+import play.api.Play.current
 
 /**
  *
@@ -85,6 +86,19 @@ object Users extends Controller {
   def userInfo = Action { implicit request =>
     maybeLoggedIn { user =>
       Ok(views.html.users.userInfo(user))
+    }
+  }
+
+  def sendTestEmail = Action { implicit request =>
+    loggedIn { user =>
+      import com.typesafe.plugin._
+      val mail = use[MailerPlugin].email
+      mail.setSubject("Test email")
+      mail.addFrom("Two To Tango <no-reply@fake.com>")
+      mail.addRecipient(user.email)
+      mail.send("Testing!")
+
+      Ok("Sent a test email to " + user.email)
     }
   }
 
