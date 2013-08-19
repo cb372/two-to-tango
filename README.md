@@ -13,7 +13,7 @@ http://two-to-tango.herokuapp.com/
 TODO
 ----
 
-[ ] Japanese localisation
-[ ] Email notifications
-[ ] 'Like' button
-[ ] Optionally set a date for plans?
+- [x] Japanese localisation
+- [ ] Email notifications
+- [ ] 'Like' button
+- [ ] Optionally set a date for plans?
