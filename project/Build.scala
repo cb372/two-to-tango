@@ -9,14 +9,17 @@ object ApplicationBuild extends Build {
 
   val appDependencies = Seq(
     "com.github.seratch"   %% "scalikejdbc"               % "[1.6,)",
+    "com.github.seratch"   %% "scalikejdbc-config"        % "[1.6,)",
     "com.github.seratch"   %% "scalikejdbc-interpolation" % "[1.6,)",
     "com.github.seratch"   %% "scalikejdbc-play-plugin"   % "[1.6,)",
+    "com.github.seratch"   %% "scalikejdbc-test"          % "[1.6,)"       % "test",
     "com.h2database"       %  "h2"                        % "1.3.173",
-    "com.github.tototoshi" %% "play-flyway"               % "0.1.4"
+    "com.github.tototoshi" %% "play-flyway"               % "0.1.4",
+    "org.specs2"           %% "specs2"                    % "2.1.1"        % "test"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+    // Add your own project settings here
   )
 
 }
