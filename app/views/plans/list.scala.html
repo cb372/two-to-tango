@@ -37,7 +37,7 @@
         @if(user.isDefined) {
           <a href="@routes.Plans.showForm()">@Messages("plans.addANewPlan")</a>
         } else {
-          Want to add a plan? First <a href="@routes.Users.showLoginForm()">login</a> or <a href="@routes.Users.showSignupForm()">Signup</a>.
+          @Messages("plans.wantToAdd.1")<a href="@routes.Users.showLoginForm()">@Messages("users.login")</a>@Messages("plans.wantToAdd.2")<a href="@routes.Users.showSignupForm()">@Messages("users.signup")</a>
         }
       </div>
     }

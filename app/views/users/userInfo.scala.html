@@ -1,9 +1,9 @@
-@(user: Option[User])
+@(user: Option[User])(implicit lang: Lang)
 
 <div>
 @user.fold {
-  Not logged in | <a href="@routes.Users.login">Login</a> | <a href="@routes.Users.signup">Signup</a>
+  @Messages("users.notLoggedIn") | <a href="@routes.Users.login">@Messages("users.login")</a> | <a href="@routes.Users.signup">@Messages("users.signup")</a>
 } { u =>
-  Logged in as <strong>@u.name</strong> | <a href="@routes.Users.logout">Logout</a>
+  @Messages("users.loggedInAs.1")<strong>@u.name</strong>@Messages("users.loggedInAs.2") | <a href="@routes.Users.logout">@Messages("users.logout")</a>
 }
 </div>

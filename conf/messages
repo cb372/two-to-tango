@@ -13,6 +13,15 @@ plans.matchedPlan.1=' 'and' '
 plans.matchedPlan.2=' 'are planning to hack on' '
 plans.matchedPlan.3=. Good luck to them!
 plans.title=Plans
+plans.wantToAdd.1=Want to add a plan? First' '
+plans.wantToAdd.2=' 'or' '
+plans.list.navLink=Plans
+plans.create.navLink=Create a New Plan
 
 users.login=Login
 users.signup=Signup
+users.logout=Logout
+users.notLoggedIn=Not logged in
+users.loggedInAs.1=Logged in as' '
+users.loggedInAs.2=
+users.error.notLoggedIn=You're not logged in!

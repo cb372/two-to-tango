@@ -1,4 +1,4 @@
-@(title: String)(content: Html)(implicit flash: Flash)
+@(title: String)(content: Html)(implicit lang: Lang, flash: Flash)
 
 <!DOCTYPE html>
 
@@ -22,8 +22,8 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="@routes.Plans.list()">Plans</a></li>
-            <li><a href="@routes.Plans.showForm()">Create a New Plan</a></li>
+            <li><a href="@routes.Plans.list()">@Messages("plans.list.navLink")</a></li>
+            <li><a href="@routes.Plans.showForm()">@Messages("plans.create.navLink")</a></li>
           </ul>
         </div>
       </div>

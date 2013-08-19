@@ -1,4 +1,4 @@
-@(form: Form[(String, String)])(implicit flash: Flash)
+@(form: Form[(String, String)])(implicit lang: Lang, flash: Flash)
 
 @main(Messages("users.signup")) {
   @helper.form(action = routes.Users.signup) {

@@ -5,6 +5,7 @@ import play.api.data._
 import play.api.data.Forms._
 import models.User
 import play.api.libs.json.Json
+import play.api.i18n.Messages
 
 /**
  *
@@ -93,7 +94,7 @@ object Users extends Controller {
 
   def loggedIn[A](block: User => PlainResult)(implicit request: Request[A]): PlainResult = {
     session.get("userId").flatMap { case uId => User.find(uId.toLong) }.fold {
-      Redirect(routes.Users.login).flashing("error" -> "Oops, you're not logged in!")
+      Redirect(routes.Users.login).flashing("error" -> Messages("users.error.notLoggedIn"))
     } { user =>
       block(user)
     }
