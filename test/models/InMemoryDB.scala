@@ -1,20 +1,20 @@
 package models
 
-import scalikejdbc._, config._
+import scalikejdbc._
+import com.googlecode.flyway.core.Flyway
 
 trait InMemoryDB {
 
-  if (! ConnectionPool.isInitialized()) {
+  val dbUrl = "jdbc:h2:mem:test-in-memory;DB_CLOSE_DELAY=-1"
+  val dbUser = "user"
+  val dbPassword = "pwd"
 
-    ConnectionPool.singleton("jdbc:h2:mem:test-in-memory", "user", "pwd")
+  val flyway = new Flyway
+  flyway.setDataSource(dbUrl, dbUser, dbPassword)
+  flyway.setLocations("db/migration/default")
+  flyway.migrate()
 
-    val ddls = new java.io.File("conf/db/migration/default").listFiles.toList.sortWith { (a,b) => a.getName < b.getName }
-    DB autoCommit { implicit s =>
-      ddls foreach { ddl =>
-        SQL(scala.io.Source.fromFile(ddl).getLines.mkString("\n")).execute.apply()
-      }
-    }
-  }
+  ConnectionPool.singleton(dbUrl, dbUser, dbPassword)
 
 }
 
